@@ -11,26 +11,43 @@
             font-family: 'Roboto', sans-serif; /* 80% formal, 20% creative */
             margin: 0;
             padding: 0;
-            background-color: #ffffcc; /* 60% white and 40% yellow */
+            background-color: #fdf6e3; /* Creamy background */
+            overflow-x: hidden; /* Hide horizontal overflow */
         }
         .container {
             max-width: 800px;
             margin: 35px auto; /* Adjusted margin top */
-            background-color: #fff; /* White background */
+            background-color: #ffffff; /* White background */
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative; /* Added to enable absolute positioning of contact-buttons */
+            min-height: 100vh; /* Ensure the body extends to at least the full height of the viewport */
+            animation: fadeIn 1s ease-out; /* Fade-in animation for the container */
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
         p {
-            margin-bottom: 10px;
-            color: #555; /* Slightly darker text color */
+            margin-bottom: 15px;
+            color: #333; /* Darker text color */
             line-height: 1.6; /* Increased line height for better readability */
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #3498db; /* Blue heading color */
         }
         .contact-info {
             margin-top: 30px;
         }
         .contact-info p {
             margin-bottom: 10px;
+            color: #555; /* Dark gray text color */
         }
         .contact-info p strong {
             color: #333; /* Darker color for strong tags */
@@ -38,42 +55,81 @@
         img {
             display: block;
             margin: auto;
-            width: 700px; /* Double the size of the logo */
-            border-radius: 50%; /* Make the logo image circular */
-            margin-bottom: 20px;
+            width: 100%; 
+            max-width: 400px; /* Maximum width for responsiveness */
+            border-radius: 20px; 
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .contact-buttons {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
+            animation: slideIn 1s ease-out; /* Slide-in animation for the buttons */
         }
-        .contact-buttons button, .contact-buttons a {
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text color */
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
+        @keyframes slideIn {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .contact-buttons img {
+            width: 100px; /* Increased size for all icons */
+            height: auto;
             cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s; /* Smooth transition for hover effect */
-            margin-right: 10px; /* Add space between buttons */
-            width: 120px; /* Equal width for buttons */
-            height: 40px;
+            transition: transform 0.3s; /* Add a smooth transition effect */
+            margin: 0 15px; /* Add space between icons */
+            animation: bounce 0.8s infinite alternate; /* Add bounce animation */
         }
-        .contact-buttons a {
-            background-color: #ffffcc; 
+        .contact-buttons img:hover {
+            transform: scale(1.1); /* Scale up the icon slightly on hover */
+            animation: none; /* Disable bounce animation on hover */
         }
-        .contact-buttons button:hover, .contact-buttons a:hover {
-            background-color: #ffffcc; 
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+        .contact-text {
+            font-size: 16px;
+            color: #777; /* Gray text color */
+            animation: fadeInUp 1s ease-out; /* Fade-in-up animation for the text */
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+        }
+        .wave svg {
+            display: block;
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <img src="logo1.png" alt="PineTWIST Logo">
-        <p> Pine twist Juice! <br> Experience the tropical delight of ripe pineapples <br> perfectly balanced with the spark of fresh ginger.</p>
+        <h2>Welcome to PineTWIST</h2>
+        <p> Indulge in the tropical delight of ripe pineapples perfectly balanced with the spark of fresh ginger.</p>
         
         <h2>Contact Information</h2>
         <div class="contact-info">
@@ -83,9 +139,24 @@
         </div>
 
         <div class="contact-buttons">
-            <button onclick="openWhatsApp()">WhatsApp</button>
-            <a href="https://www.snapchat.com/add/kweks98" target="_blank"><button>Snapchat</button></a>
+            <img src="whatsapp_logo.png" alt="WhatsApp Logo" onclick="openWhatsApp()">
+            <a href="https://www.snapchat.com/add/kweks98" target="_blank"><img src="snapchat_logo.png" alt="Snapchat Logo"></a>
         </div>
+
+        <p class="contact-text">Click the icons above to place an order, make inquiries, or raise complaints.</p>
+    </div>
+
+    <!-- Animated wave background -->
+    <div class="wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <defs>
+                <linearGradient id="waveGradient" gradientTransform="rotate(90)">
+                    <stop offset="0%" stop-color="#f1c40f"/> <!-- Deep yellow at the top -->
+                    <stop offset="100%" stop-color="#f9e79f"/> <!-- Light yellow at the bottom -->
+                </linearGradient>
+            </defs>
+            <path fill="url(#waveGradient)" fill-opacity="1" d="M0,192L48,192C96,192,192,192,288,160C384,128,480,64,576,69.3C672,75,768,149,864,170.7C960,192,1056,160,1152,128C1248,96,1344,64,1392,48L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
     </div>
 
     <script>
